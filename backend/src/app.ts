@@ -4,6 +4,7 @@ import cookieParser from 'cookie-parser';
 import config from './config/env';
 import { errorHandler, notFoundHandler } from './middleware/errorHandler';
 import logger from './utils/logger';
+import authRoutes from './routes/authroutes';
 
 const app: Application = express();
 
@@ -29,7 +30,7 @@ app.use((req: Request, res: Response, next: NextFunction) => {
   next();
 });
 
-app.get('/health', (req: Request, res: Response) => {
+app.get('/health', (_req: Request, res: Response) => {
   res.status(200).json({
     status: 'ok',
     uptime: process.uptime(),
@@ -37,10 +38,10 @@ app.get('/health', (req: Request, res: Response) => {
   });
 });
 
-app.get('/api', (req: Request, res: Response) => {
+app.get('/api', (_req: Request, res: Response) => {
   res.status(200).json({ message: 'Task Board API  is up and running' });
 });
-
+app.use('/api/auth', authRoutes);
 app.use(notFoundHandler);
 app.use(errorHandler);
 
