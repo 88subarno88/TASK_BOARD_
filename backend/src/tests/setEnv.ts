@@ -1,0 +1,1 @@
+process.env.DATABASE_URL = 'postgresql://rohitmeena@localhost:5432/taskboard_test?schema=public'
