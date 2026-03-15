@@ -6,7 +6,6 @@ const router = Router();
 
 // all board routes require login
 router.use(authenticate);
-
 // board routes
 router.post('/', boardController.createBoard);
 router.get('/', boardController.getBoardsByProject);

@@ -12,6 +12,8 @@ export const createBoard = async (data: CreateBoardInput) => {
   if (!project) {
     throw new AppError(404, 'Project not found');
   }
+
+
   // create board and add 4 default columns at the same time
   const board = await prisma.board.create({
     data: {

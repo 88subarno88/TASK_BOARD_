@@ -11,6 +11,9 @@ describe('Tests that ensure login and signup work', () => {
   };
 
   afterEach(async () => {
+    await prisma.refreshToken.deleteMany({
+      where: { user: { email: myTestUser.email } },
+    });
     await prisma.user.deleteMany({
       where: { email: myTestUser.email },
     });
